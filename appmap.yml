@@ -1,0 +1,19 @@
+enabled: true
+protocol: tcp
+packages:
+  - path: build
+    recursive: true
+log-level: info
+scenarios:
+  juice:
+    type: fork
+    configuration:
+      recorder: process
+      output:
+        filename: juice
+    exec: build/app.js
+hooks:
+  cjs: true
+  esm: true
+  http: true
+  sqlite3: true
