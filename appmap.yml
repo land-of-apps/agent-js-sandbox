@@ -12,8 +12,19 @@ scenarios:
       output:
         filename: juice
     exec: build/app.js
+output:
+  indent: 2
+serialization:
+  method: toString
 hooks:
   cjs: true
   esm: true
   http: true
+  group: true
   sqlite3: true
+validate:
+  message: true
+  appmap: true
+exclude:
+  - "-[0-9]+$"
+  
