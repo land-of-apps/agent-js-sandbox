@@ -1,9 +1,10 @@
 enabled: true
+mode: remote
 protocol: tcp
 packages:
   - path: build
     recursive: true
-log-level: info
+log: info
 scenarios:
   juice:
     type: fork
@@ -19,6 +20,7 @@ serialization:
 hooks:
   cjs: true
   esm: true
+  apply: true
   http: true
   group: true
   sqlite3: true
