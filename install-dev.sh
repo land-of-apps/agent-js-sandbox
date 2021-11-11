@@ -3,12 +3,13 @@ cd juice-shop
 npm install
 
 # npm install @appland/appmap-agent-js
+# npx @appland/appmap-agent-js --scenario juice
+
 mkdir node_modules/@appland
 ln -s ../../../../appmap-agent-js ./node_modules/@appland/appmap-agent-js
 
-mkdir tmp
-mkdir tmp/appmap
+ln ../appmap.yml appmap.yml 
 cp ../appmap.yml appmap.yml
 
-# npx @appland/appmap-agent-js --scenario juice
-node ./node_modules/@appland/appmap-agent-js/bin/batch.mjs --scenario juice
+
+node ./node_modules/@appland/appmap-agent-js/bin/bin.mjs

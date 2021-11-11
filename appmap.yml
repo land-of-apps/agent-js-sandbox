@@ -1,20 +1,26 @@
-enabled: true
-mode: remote
-protocol: tcp
-packages:
-  - path: build
-    recursive: true
+mode: local
 log: info
 scenarios:
   juice:
     type: fork
+    exec: build/app.js
     configuration:
       recorder: process
       output:
-        filename: juice
-    exec: build/app.js
-output:
-  indent: 2
+        basename: juice
+  mocha:
+    type: spawn
+    exec: npx
+    argv:
+      - mocha
+      - -r
+      - ts-node/register
+      - -r
+      - source-map-support/register
+      - --recursive
+      - test/server/**/*.ts
+    configuration:
+      recorder: mocha
 serialization:
   method: toString
 hooks:
@@ -22,8 +28,8 @@ hooks:
   esm: true
   apply: true
   http: true
-  group: true
   sqlite3: true
+ordering: causal
 validate:
   message: true
   appmap: true

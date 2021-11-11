@@ -1,0 +1,14 @@
+recorder: remote
+mode: remote
+track-port: 8080
+intercept-track-port: ""
+hooks:
+  esm: true
+  cjs: true
+  http: true
+  mysql: false
+  pg: false
+  sqlite3: true
+ordering: chronological
+pruning: false
+log: info
