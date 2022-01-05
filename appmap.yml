@@ -1,26 +1,10 @@
-mode: local
 log: info
-scenarios:
-  juice:
-    type: fork
-    exec: build/app.js
-    configuration:
-      recorder: process
-      output:
-        basename: juice
-  mocha:
-    type: spawn
-    exec: npx
-    argv:
-      - mocha
-      - -r
-      - ts-node/register
-      - -r
-      - source-map-support/register
-      - --recursive
-      - test/server/**/*.ts
-    configuration:
-      recorder: mocha
+packages:
+  - regexp: (^|/)node_modules/
+    enabled: false
+  - regexp: ^
+    enabled: true
+pruning: true
 serialization:
   method: toString
 hooks:
@@ -29,10 +13,25 @@ hooks:
   apply: true
   http: true
   sqlite3: true
+  mysql: false
+  pg: false
 ordering: causal
 validate:
   message: true
-  appmap: true
-exclude:
-  - "-[0-9]+$"
-  
+  appmap: false
+scenarios:
+  remote:
+    command: node build/app.js
+    recorder: remote
+    track-port: 8080
+  process:
+    command: node, build/app.js
+    recorder: process
+    output:
+      directory: tmp/appmap
+      basename: process
+  mocha:
+    command: npx mocha -r ts-node/register -r source-map-support/register --recursive test/server/**/*.ts
+    recorder: mocha
+    output:
+      directory: tmp/appmap/mocha
