@@ -6,7 +6,7 @@ packages:
     enabled: true
 pruning: true
 serialization:
-  method: toString
+  method: Object.prototype.toString
 hooks:
   cjs: true
   esm: true
@@ -18,14 +18,14 @@ hooks:
 ordering: causal
 validate:
   message: true
-  appmap: false
+  appmap: true
 scenarios:
   remote:
     command: node build/app.js
     recorder: remote
     track-port: 8080
   process:
-    command: node, build/app.js
+    command: node build/app.js
     recorder: process
     output:
       directory: tmp/appmap
