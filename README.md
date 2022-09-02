@@ -1,12 +1,16 @@
-# juice-setup
+# AgentJS Sandbox
 
-Setup for recording the juice shop with the javascript agent:
+Setup for recording example applications with the JavaScript agent.
+For now there is now installation, simply clone the repository:
+
+```sh
+git clone https://github.com/land-of-apps/agent-js-sandbox.git
+cd agent-js-sandbox
+```
 
 ## Juice-Shop
 
 ```sh
-git clone https://github.com/land-of-apps/juice-setup.git
-cd juice-setup
 node juice/setup.mjs [--agent-branch=branch] [--juice-tag=tag]
 cd juice-shop
 npx appmap-agent-js --scenario=process
@@ -15,8 +19,6 @@ npx appmap-agent-js --scenario=process
 ## NextJS Blog
 
 ```sh
-git clone https://github.com/land-of-apps/juice-setup.git
-cd juice-setup
 node nextjs/setup.mjs [--agent-branch=branch]
 cd nextjs-blog
 npx appmap-agent-js
