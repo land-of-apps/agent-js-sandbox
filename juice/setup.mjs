@@ -1,8 +1,6 @@
-import {spawnSync} from "node:child_process";
-
-const agent_url = "https://github.com/applandinc/appmap-agent-js.git";
-
-const juice_url = "https://github.com/bkimminich/juice-shop.git";
+import {spawn} from "../spawn.mjs";
+import {parseArgv} from "../argv.mjs";
+import {installAgent} from "../agent.mjs";
 
 const options = {stdio:"inherit"};
 
@@ -12,35 +10,31 @@ const {
 } = {
   "--agent-branch": null,
   "--juice-tag": null,
-  ... Object.fromEntries(process.argv.slice(2).map((arg) => arg.split("="))),
+  ... parseArgv(process.argv.slice(2)),
 }
 
 console.log("Cloning juice-shop repository...");
-spawnSync("git", ["clone", juice_url], options);
+spawn(
+  "git",
+  "clone",
+  "https://github.com/bkimminich/juice-shop.git",
+);
 
 process.chdir("juice-shop");
 
 if (tag !== null) {
   console.log(`\n\nChecking out juice-shop tag ${tag}`);
-  spawnSync("git", ["checkout", `tag/${tag}`], options);
+  spawn("git", "checkout", `tag/${tag}`);
 }
 
 console.log("\n\nInstalling juice-shop...");
-spawnSync("npm", ["install"], options);
+spawn("npm", "install");
 
 console.log(`\n\nInstalling the agent ${branch == null ? "from npm" : branch}...`);
-spawnSync(
-  "npm",
-  [
-    "install",
-    branch === null ? "@appland/appmap-agent-js" : `${agent_url}#${branch}`,
-    "--save-dev",
-  ],
-  options,
-);
+installAgent(branch);
 
 console.log("\n\nLinking configuration file...");
-spawnSync("ln", ["-s", "../appmap.yml", "appmap.yml"], options);
+spawn("ln", "-s", "../juice/appmap.yml", "appmap.yml");
 
 console.log("\n\nDone, record the juice-shop with:");
 console.log("> cd juice-shop");

@@ -1,0 +1,30 @@
+log: info
+packages:
+  - regexp: (^|/)node_modules/
+    enabled: false
+  - regexp: ^
+    enabled: true
+ordering: causal
+serialization:
+  maximum-print-length: 50
+  maximum-properties-length: 10
+  impure-printing: false
+  impure-constructor-naming: false
+  impure-array-inspection: false
+  impure-error-inspection: false
+  impure-hash-inspection: false
+pruning: true
+hooks:
+  cjs: true
+  esm: true
+  apply: true
+  eval: true
+  http: true
+  sqlite3: false
+  mysql: false
+  pg: false
+validate:
+  message: true
+  appmap: true
+recorder: process
+command: node node_modules/.bin/next dev -p 3000
