@@ -5,8 +5,6 @@ packages:
   - regexp: ^
     enabled: true
 pruning: true
-serialization:
-  method: Object.prototype.toString
 hooks:
   cjs: true
   esm: true
