@@ -38,7 +38,8 @@ scenarios:
       directory: tmp/appmap
       basename: process
   mocha:
-    command: npx mocha -r ts-node/register -r source-map-support/register --recursive test/server/**/*.ts
+    command:
+      npx mocha -r ts-node/register -r source-map-support/register --recursive test/server/**/*.ts
     recorder: mocha
     output:
       directory: tmp/appmap/mocha

@@ -1,0 +1,13 @@
+{
+  "name": "agent-js-sandbox",
+  "version": "0.0.0",
+  "devDependencies": {
+    "eslint": "^8.23.0",
+    "eslint-plugin-import": "^2.26.0",
+    "prettier": "^2.7.1"
+  },
+  "scripts": {
+    "format": "npx prettier --write lib/*.mjs bin/*.mjs",
+    "lint": "npx eslint lib/*.mjs bin/*.mjs"
+  }
+}
