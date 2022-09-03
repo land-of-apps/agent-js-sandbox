@@ -18,7 +18,7 @@ process.chdir("nextjs-blog");
 
 installAgent(branch);
 
-spawn("ln", "-s", "../config/nextjs-block.yml", "appmap.yml");
+spawn("ln", "-s", "../config/nextjs-blog.yml", "appmap.yml");
 
 console.log("\nSetup done! Record the nextjs-blog with:");
 console.log("> cd nextjs-blog");
